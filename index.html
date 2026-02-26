@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pavan Kumar Borra | Portfolio</title>
+<style>
+   :root {
+    /* Light Mode */
+    --bg: #f8f9fa;
+    --text: #212529;
+    --card: #ffffff;
+    --primary: #198d76;
+    --secondary: #4fa9a0;
+    --accent: #FFB347;
+    --border: #e9ecef;
+    --shadow: rgba(0, 0, 0, 0.08);
+    }
+
+    body.dark {
+        /* Dark Mode */
+        --bg: #121212;
+        --text: #e9ecef;
+        --card: #1e1e1e;
+        --primary: #26b398;
+        --secondary: #198d76;
+        --accent: #ffc26b;
+        --border: #333333;
+        --shadow: rgba(0, 0, 0, 0.4);
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        transition: background 0.3s, color 0.3s;
+        line-height: 1.6;
+    }
+
+    header {
+        text-align: center;
+        padding: 60px 20px;
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .section {
+        display: none;
+        padding: 40px 20px;
+        max-width: 900px;
+        margin: auto;
+        animation: fade 0.5s ease;
+    }
+
+    @keyframes fade {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .active {
+        display: block;
+    }
+
+    .home-photo, .profile-photo {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--card); /* Changed from orange to card color for a "floating" look */
+        margin-top: -80px;
+        box-shadow: var(--shadow);
+        background: var(--card);
+    }
+
+    .btn {
+        background: var(--primary);
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 8px;
+        margin: 10px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
+        transition: 0.2s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .btn:hover {
+        background: var(--secondary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+
+    /* Accent button for "Call to Action" */
+    .btn-accent {
+        background: var(--accent);
+        color: #212529;
+    }
+
+    .card {
+        background: var(--card);
+        padding: 30px;
+        margin-bottom: 25px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 15px var(--shadow);
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card h2, .card h3 {
+        color: var(--primary);
+        margin-top: 0;
+    }
+
+    .dark-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--card);
+        color: var(--primary);
+        border: 1px solid var(--border);
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: var(--shadow);
+        z-index: 1000;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 30px;
+        background: var(--primary);
+        color: white;
+        margin-top: 50px;
+    }
+</style>
+</head>
+
+<body>
+
+<button class="dark-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+
+<header>
+    <h1>Pavan Kumar Borra</h1>
+    <p>Programmer Analyst | Angular | ASP.NET | Azure DevOps</p>
+</header>
+
+<!-- HOME SECTION -->
+<section id="home" class="section active">
+    <div style="text-align:center;">
+        <img src="../Pavan Profile/profile.jpg" class="home-photo" alt="Profile Photo">
+        <h2>Welcome to My Portfolio</h2>
+        <button class="btn" onclick="showSection('profile')">Profile</button>
+        <button class="btn" onclick="showSection('contact')">Contact</button>
+    </div>
+</section>
+
+<!-- PROFILE SECTION -->
+<section id="profile" class="section">
+    <div style="text-align:center;">
+        <img src="../Pavan Profile/profile.jpg" class="profile-photo" alt="Profile Photo">
+    </div>
+
+    <div class="card">
+        <h2>About Me</h2>
+        <p>A focused and goal‑oriented Programmer Analyst with strong experience in Angular, ASP.NET, Azure DevOps, and dashboard development. Passionate about delivering high‑quality solutions and exploring new technologies.</p>
+    </div>
+
+    <div class="card">
+        <h2>Key Skills</h2>
+        <ul>
+            <li>Angular 8–16</li>
+            <li>ASP.NET</li>
+            <li>Azure DevOps (CI/CD Pipelines)</li>
+            <li>Python, SQL Server, C++</li>
+            <li>Electrical Circuits, Power Systems, Control Systems</li>
+            <li>Multitasking, Time Management, Communication</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Professional Experience</h2>
+
+        <h3>Programmer Analyst — Cognizant (Aug 2022 – Dec 16, 2024)</h3>
+        <ul>
+            <li>Developed Angular 16 + ASP.NET applications.</li>
+            <li>Designed filters, metrics, and dashboards for performance governance.</li>
+            <li>Delivered dashboards for Nike, Mattel, Centrica, DirecTV, CoreLogic, Merck.</li>
+            <li>Managed deployments across DEV, SIT, UAT, PROD.</li>
+            <li>Worked with Azure DevOps CI/CD pipelines.</li>
+        </ul>
+
+        <h3>Intern — Cognizant (Mar 2022 – Jul 2022)</h3>
+        <ul>
+            <li>Trained in HTML, CSS, JavaScript.</li>
+            <li>Solved logical problems using Python & C#.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Education</h2>
+        <p><strong>B.Tech in Electrical & Electronics Engineering</strong> — LBRCE (2019–2022) — GPA: 8.02</p>
+        <p><strong>Diploma in EEE</strong> — AANM & VVRSR Polytechnic (2016–2019) — 93.5%</p>
+        <p><strong>SSC</strong> — Oxford NRI Concept School (2015–2016) — GPA: 9.5</p>
+    </div>
+
+    <div class="card">
+        <h2>Accomplishments</h2>
+        <ul>
+            <li>IOT‑based BLDC motor speed control project.</li>
+            <li>IOT‑based power theft detection system.</li>
+            <li>North South Foundation Scholarship (3 years).</li>
+            <li>AI Fundamentals (NASSCOM), Python (NPTEL), Coursera Internship.</li>
+            <li>EV Design using MATLAB Simulink (Pantech Labs).</li>
+            <li>Organized college events & NSS volunteer.</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Hobbies & Interests</h2>
+        <p>Learning, playing cricket, music, movies, exploring new technologies.</p>
+    </div>
+
+    <button class="btn" onclick="showSection('home')">Back Home</button>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="section">
+    <div class="card">
+        <h2>Contact Information</h2>
+        <p><strong>Phone:</strong> +91 6303558876</p>
+        <p><strong>Email:</strong> pavankumaree28@gmail.com</p>
+        <p><strong>Location:</strong> Mylavaram, AP, India</p>
+        <p><strong>LinkedIn:</strong> 
+            <a href="https://linkedin.com/in/pavankumar628" target="_blank">
+                linkedin.com/in/pavankumar628
+            </a>
+        </p>
+    </div>
+
+    <button class="btn" onclick="showSection('home')">Back Home</button>
+</section>
+
+<div class="footer">
+    © 2024 Pavan Kumar Borra — Portfolio
+</div>
+
+<script>
+    function showSection(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark");
+    }
+</script>
+
+</body>
+</html>
