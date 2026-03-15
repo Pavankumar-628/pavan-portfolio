@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pavan Kumar Borra | Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    (function(){
+        emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+</script>
 <style>
 :root {
     --bg: #0b0714;
@@ -846,10 +852,10 @@ form input:focus, form textarea:focus {
             <div class="card">
                 <h3>Send a Message</h3>
                 <form id="contactForm">
-                    <input type="text" id="name" placeholder="Your Name" required>
-                    <input type="email" id="email" placeholder="Your Email" required>
-                    <textarea id="message" placeholder="Your Message"></textarea>
-                    <button class="btn" type="submit" style="margin-top:12px;">Send Message</button>
+                    <input type="text" name="from_name" placeholder="Your Name" required>
+                    <input type="email" name="reply_to" placeholder="Your Email" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                    <button class="btn" type="submit">Send Message</button>
                 </form>
                 <p id="formStatus" style="font-size:13px;color:var(--muted);margin-top:10px;"></p>
             </div>
@@ -974,12 +980,18 @@ certModalBackdrop.addEventListener('click', e => {
         certModalBackdrop.classList.remove('active');
     }
 });
-const contactForm = document.getElementById('contactForm');
-const formStatus = document.getElementById('formStatus');
-contactForm.addEventListener('submit', e => {
+
+document.getElementById("contactForm").addEventListener("submit", function(e) {
     e.preventDefault();
-    formStatus.textContent = "Message sent! (Front‑end only. You can connect this to a backend or email service later.)";
-    contactForm.reset();
+
+    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+        .then(() => {
+            alert("Message sent successfully!");
+            this.reset();
+        })
+        .catch(() => {
+            alert("Failed to send message. Try again later.");
+        });
 });
 </script>
 </body>
