@@ -857,6 +857,8 @@ form input:focus, form textarea:focus {
                     <textarea name="message" placeholder="Your Message" required></textarea>
                     <button class="btn" type="submit">Send Message</button>
                 </form>
+<p id="formStatus"></p>
+
                 <p id="formStatus" style="font-size:13px;color:var(--muted);margin-top:10px;"></p>
             </div>
         </div>
@@ -981,18 +983,25 @@ certModalBackdrop.addEventListener('click', e => {
     }
 });
 
-document.getElementById("contactForm").addEventListener("submit", function(e) {
+const contactForm = document.getElementById("contactForm");
+const formStatus = document.getElementById("formStatus");
+
+contactForm.addEventListener("submit", function(e) {
     e.preventDefault();
 
-    emailjs.sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", this)
+    formStatus.textContent = "Sending...";
+
+    emailjs.sendForm("jbansO9UYyKys_Wjs", "template_ia8cmw8", this)
         .then(() => {
-            alert("Message sent successfully!");
-            this.reset();
+            formStatus.textContent = "Message sent successfully!";
+            contactForm.reset();
         })
         .catch(() => {
-            alert("Failed to send message. Try again later.");
+            formStatus.textContent = "Failed to send message. Try again later.";
         });
 });
+
+
 </script>
 </body>
 </html>
