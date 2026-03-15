@@ -1,4 +1,3 @@
-
 function showSection(id) {
     document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
     const target = document.getElementById(id);
@@ -8,28 +7,37 @@ function showSection(id) {
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
+
 function navigateTo(id) {
     showSection(id);
 }
+
 document.querySelectorAll('.dock-item').forEach(item => {
     item.addEventListener('click', () => {
         const target = item.getAttribute('data-target');
         showSection(target);
     });
 });
+
 document.querySelectorAll('[data-reveal]').forEach(card => {
     card.addEventListener('click', e => {
         if (e.target.closest('button')) return;
         card.classList.toggle('expanded');
     });
 });
+
 const darkToggle = document.getElementById('darkToggle');
-darkToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-});
+if (darkToggle) {
+    darkToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark');
+    });
+}
+
 const themePreview = document.getElementById('themePreview');
 const themeThumbs = document.querySelectorAll('.theme-thumb');
+
 function setThemeBackground(theme) {
+    if (!themePreview) return;
     if (theme === 'tech') {
         themePreview.style.backgroundImage = "linear-gradient(135deg, rgba(123,47,247,0.6), rgba(0,212,255,0.4)), url('tech-theme.jpg')";
     } else if (theme === 'code') {
@@ -40,6 +48,7 @@ function setThemeBackground(theme) {
         themePreview.style.backgroundImage = "linear-gradient(135deg, rgba(123,47,247,0.4), rgba(9,9,121,0.4))";
     }
 }
+
 themeThumbs.forEach(thumb => {
     thumb.addEventListener('click', () => {
         themeThumbs.forEach(t => t.classList.remove('active'));
@@ -48,12 +57,15 @@ themeThumbs.forEach(thumb => {
         setThemeBackground(theme);
     });
 });
+
 setThemeBackground('gradient');
+
 const certModalBackdrop = document.getElementById('certModalBackdrop');
 const certModalClose = document.getElementById('certModalClose');
 const certModalTitle = document.getElementById('certModalTitle');
 const certModalIssuer = document.getElementById('certModalIssuer');
 const certModalDetails = document.getElementById('certModalDetails');
+
 document.querySelectorAll('.cert-card').forEach(card => {
     card.addEventListener('click', () => {
         const data = card.getAttribute('data-cert');
@@ -65,32 +77,37 @@ document.querySelectorAll('.cert-card').forEach(card => {
         certModalBackdrop.classList.add('active');
     });
 });
-certModalClose.addEventListener('click', () => {
-    certModalBackdrop.classList.remove('active');
-});
-certModalBackdrop.addEventListener('click', e => {
-    if (e.target === certModalBackdrop) {
+
+if (certModalClose) {
+    certModalClose.addEventListener('click', () => {
         certModalBackdrop.classList.remove('active');
-    }
-});
+    });
+}
+
+if (certModalBackdrop) {
+    certModalBackdrop.addEventListener('click', e => {
+        if (e.target === certModalBackdrop) {
+            certModalBackdrop.classList.remove('active');
+        }
+    });
+}
 
 const contactForm = document.getElementById("contactForm");
 const formStatus = document.getElementById("formStatus");
 
-contactForm.addEventListener("submit", function(e) {
-    e.preventDefault();
+if (contactForm) {
+    contactForm.addEventListener("submit", function(e) {
+        e.preventDefault();
 
-    formStatus.textContent = "Sending...";
+        formStatus.textContent = "Sending...";
 
-    emailjs.sendForm("service_wfpl1qm", "template_ia8cmw8", this)
-        .then(() => {
-            formStatus.textContent = "Message sent successfully!";
-            contactForm.reset();
-        })
-        .catch(() => {
-            formStatus.textContent = "Failed to send message. Try again later.";
-        });
-});
-
-
-
+        emailjs.sendForm("service_wfpl1qm", "template_ia8cmw8", this)
+            .then(() => {
+                formStatus.textContent = "Message sent successfully!";
+                contactForm.reset();
+            })
+            .catch(() => {
+                formStatus.textContent = "Failed to send message. Try again later.";
+            });
+    });
+}
