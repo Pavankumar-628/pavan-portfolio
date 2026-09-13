@@ -106,8 +106,9 @@ if (contactForm) {
                 formStatus.textContent = "Message sent successfully!";
                 contactForm.reset();
             })
-            .catch(() => {
-                formStatus.textContent = "Failed to send message. Try again later.";
+            .catch((error) => {
+                console.error("EmailJS Error:", error);
+                formStatus.textContent = `Failed: ${error.text || error.message || "Try again later."}`;
             });
     });
 }
